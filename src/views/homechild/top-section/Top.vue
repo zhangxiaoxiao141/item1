@@ -1,32 +1,40 @@
 <template>
-    <div class="home">
+    <div class="hometop">
         <top-bar class="top"></top-bar>
-        <div class="swiper">
-            <img src="~assets/img/banner_slices/banner.png" alt="">
-            <div class="introduce">
-                <div class="infirst">
-                    <p>专注于</p>技术服务驻场远程服务商</div>
-                <div class="insecond">给企业提供灵活用工技术研发人才</div>
-                <div class="inthird">解决企业招聘难题</div>
-            </div>
+        <swiper></swiper>
+        <div class="introduce">
+            <div v-for="(item,index) in desc" :class="classes[index]">{{item}}</div>
+            <p></p>
         </div>
     </div>
   
 </template>
 
 <script>
+import Swiper from 'components/content/Swiper';
 import TopBar from './TopBar.vue';
 export default {
-    name:"Home",
+    name:"Top",
     components:{
-        TopBar
+        TopBar,
+        Swiper
+    },
+    data(){
+        return{
+            desc:[
+                "专注于技术服务驻场远程服务商",
+                "给企业提供灵活用工技术研发人才",
+                "解决企业招聘难题"
+            ],
+            classes:["infirst","insecond","inthird"]
+        }
     }
 
 }
 </script>
 
 <style scoped>
-.home{
+.hometop{
     width: 1920px;
     height: 660px;
     background: #EBEBEB;
@@ -41,6 +49,8 @@ export default {
     margin-top: 22px;
 }
 .swiper{
+    width: 1920px;
+    height: 660px;
     position: absolute;
     top: 0;
     left: 0;
@@ -48,14 +58,19 @@ export default {
 
 .infirst,.insecond,.inthird{
     margin-top: 46px;
-    font-family: Microsoft YaHei;
     font-weight: 400;
     color: #FFFFFF;
     flex-wrap: nowrap;
 }
 
-p{
+p{  
+    position: absolute;
+    left: 359px;
+    top: calc(287px + 21px + 19px);
     display: inline;
+    width: 113px;
+    height: 2px;
+    background: #FFBA00;
 }
 .infirst{
     /* width: 601px; */
